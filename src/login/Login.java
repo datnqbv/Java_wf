@@ -1,4 +1,3 @@
-
 package login;
 
 import connect.ConnectToSQL;
@@ -223,11 +222,9 @@ public class Login extends javax.swing.JFrame {
             PreparedStatement pst = conn.prepareStatement(sql);
             pst.setString(1, txtUId.getText()); // Lấy tên người dùng từ ô nhập
 
-            // Mã hóa mật khẩu người dùng nhập vào
+            // Không mã hóa mật khẩu người dùng nhập vào nữa
             String inputPassword = String.valueOf(txtPwd.getPassword());
-            String hashedInputPassword = hashPassword(inputPassword); // Mã hóa mật khẩu nhập vào
-
-            pst.setString(2, hashedInputPassword); // Mật khẩu đã mã hóa
+            pst.setString(2, inputPassword); // So sánh trực tiếp với mật khẩu trong DB
 
             ResultSet rs = pst.executeQuery();
 
